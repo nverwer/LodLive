@@ -18,21 +18,20 @@ $(function() {
 			top : $(window).height() / 2 + $('body').scrollTop()
 		});
 	}
- 
+
 	var nextSpeed = 500;
 	var fadeSpeed = 100;
-	var loca = $(location).attr('search');
+	var loca = $(location).attr('search').substring(1);
 	if (loca) {
 		$("#startPanel").remove();
 		$(".paginator").remove();
 		$("#footer").remove();
 		$("#lang").remove();
 		$('body').append('<div id="aSpace"></div>');
-		var res = $.trim(loca.substring(loca.indexOf("?") + 1));
-		if (res.indexOf("%3A") != -1) {
-			res = res.replace(/%2F/g, '/');
-			res = res.replace(/%3A/g, ':');
-		}
+		var res = $.trim(loca);
+		res = res.replace(/%3A/g, ':');
+		res = res.replace(/%2F/g, '/');
+		res = res.replace(/%23/g, '#');
 		$("#aSpace").lodlive('init', res);
 	} else {
 		var boxesLength = 0;
